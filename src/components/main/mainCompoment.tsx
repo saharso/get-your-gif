@@ -8,7 +8,6 @@ export type IHeaderProps = {
 }
 const MainComponent: React.FunctionComponent<IHeaderProps> = ({routes}) => {
     return <main className="app-main">
-
         <Switch>
             {
             routes && routes.map(route => {
@@ -17,7 +16,6 @@ const MainComponent: React.FunctionComponent<IHeaderProps> = ({routes}) => {
             })
             }
         </Switch>
-
     </main>
 }
 
