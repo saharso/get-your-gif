@@ -1,10 +1,7 @@
 import React from 'react';
-export interface Route {
-    title: string;
-    to: string;
-    component: Function;
-}
-const routes: Route[] = [
+import IRoute from '../../ts/route.interface';
+
+const routes: IRoute[] = [
     {
         title: 'Search Gifs',
         to: '/',
