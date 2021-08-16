@@ -1,5 +1,8 @@
 import React from 'react';
+import SearchUiComponent from '../../../ui/search.ui';
 
 export default function SearchRouteComponent(){
-    return <div>Search route</div>;
+    return <>
+        <SearchUiComponent/>
+    </>;
 }

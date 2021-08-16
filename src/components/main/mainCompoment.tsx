@@ -12,7 +12,7 @@ const MainComponent: React.FunctionComponent<IHeaderProps> = ({routes}) => {
             {
             routes && routes.map(route => {
                 const Component = route.component;
-                return <Route exact path={route.to} render={()=><Suspense fallback={<><Loader/></>}><Component/></Suspense>} />
+                return <Route exact path={route.to} key={route.to} render={()=><Suspense fallback={<><Loader/></>}><Component/></Suspense>} />
             })
             }
         </Switch>

@@ -14,7 +14,7 @@ const HeaderComponent: React.FunctionComponent<IHeaderProps> = ({title, routes})
         <nav>
             {
                 routes && routes.map(route =>(
-                    <Link to={route.to}>{route.title}</Link>
+                    <Link key={route.to} to={route.to}>{route.title}</Link>
                 ))
             }
         </nav>
