@@ -1,18 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import useDebounce from '../hooks/useDebounce';
 export interface ISearchUi {
-    onQueryUpdate?: Function;
+    onQueryUpdate: Function;
     defaultValue?: string;
 }
-
-
 
 const SearchUiComponent: React.FunctionComponent<ISearchUi> = ({onQueryUpdate, defaultValue}) => {
     const [value, setValue] = useState('');
     const debouncedResult = useDebounce(value);
 
     useEffect(()=>{
-        onQueryUpdate && onQueryUpdate(debouncedResult);
+        onQueryUpdate(debouncedResult);
     },[debouncedResult]);
 
     function onKeyup(e: any){
