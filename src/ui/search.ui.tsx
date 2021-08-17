@@ -1,33 +1,22 @@
-import React from 'react';
-
+import React, {useState, useEffect} from 'react';
+import useDebounce from '../hooks/useDebounce';
 export interface ISearchUi {
     onQueryUpdate?: Function;
     defaultValue?: string;
 }
 
-function debounce(waitMs = 500){
-    let timeout: ReturnType<typeof setTimeout>;
-    let allow: boolean = false;
-    const setCallback = function (callback: Function) {
-      clearTimeout(timeout);
-      timeout = setTimeout(()=>{
-        callback();
-        allow = true;
-      }, waitMs);
-      if(allow === true) {
-        callback();
-        allow = false;
-      }
-    }  
-    return {setCallback}
-}
+
 
 const SearchUiComponent: React.FunctionComponent<ISearchUi> = ({onQueryUpdate, defaultValue}) => {
-    const deb = debounce(200);
+    const [value, setValue] = useState('');
+    const debouncedResult = useDebounce(value);
+
+    useEffect(()=>{
+        onQueryUpdate && onQueryUpdate(debouncedResult);
+    },[debouncedResult]);
+
     function onKeyup(e: any){
-        deb.setCallback(() => {
-            onQueryUpdate && onQueryUpdate(e.target.value);
-        });
+        setValue(e.target.value);
     }
     return <>
         
