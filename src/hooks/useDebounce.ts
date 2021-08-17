@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function debounce(waitMs = 500){
     let timeout: ReturnType<typeof setTimeout>;
@@ -17,10 +17,10 @@ function debounce(waitMs = 500){
     return {setCallback}
 }
 
-const debouncer = debounce(500);
+const debouncer = debounce(200);
 
 export default function useDebounce(str: string){
-  const [value, setValue] = useState<string | null>(null);
+  const [value, setValue] = useState<string>('');
   debouncer.setCallback(() => {
     setValue(str);
   });
