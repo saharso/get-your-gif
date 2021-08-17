@@ -6,7 +6,7 @@ function parseScreenSize(): number {
     let size: screenWidth;
     if(window.innerWidth < 500) {
         size = 'mobile'
-    } else if (window.innerWidth < 1024) {
+    } else if (window.innerWidth < 800) {
         size = 'tablet';
     } else {
         size = 'desktop';

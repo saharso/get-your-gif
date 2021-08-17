@@ -1,7 +1,7 @@
 import React, {Suspense} from "react";
 import IRoute from '../../ts/route.interface';
 import {Route, Switch} from "react-router-dom";
-import Loader from "../../ui/loader.ui";
+import Loader from "../../ui/loader";
 
 export type IHeaderProps = {
     routes: IRoute[];
