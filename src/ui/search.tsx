@@ -7,10 +7,12 @@ export interface ISearchUi {
 
 const SearchUiComponent: React.FunctionComponent<ISearchUi> = ({onQueryUpdate, defaultValue}) => {
     const [value, setValue] = useState('');
+    const [preventInitial, setPreventInitial] = useState(false);
     const debouncedResult = useDebounce(value);
 
     useEffect(()=>{
-        onQueryUpdate(debouncedResult);
+        preventInitial && onQueryUpdate(debouncedResult);
+        setPreventInitial(true);
     },[debouncedResult]);
 
     function onKeyup(e: any){

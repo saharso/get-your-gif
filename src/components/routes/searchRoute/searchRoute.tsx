@@ -5,15 +5,14 @@ import useFetchGifs from '../../../hooks/useFetchGifs';
 import useItemsNoByScreenSize from '../../../hooks/useItemsNoByScreenSize';
 import SearchResultComponent from '../../searchResults/searchResults';
 import Loader from '../../../ui/loader';
+import ActionsEnum from '../../../models/actions.enum';
 
 export default function SearchRouteComponent(){
-    const {itemsNoByScreenSize} = useItemsNoByScreenSize();
-    const [query, setQuery] = useState('');
-    const [numberOfItems, setNumberOfItems] = useState(itemsNoByScreenSize);
     const { state, dispatch } = useContext(AppContext);
+    const {itemsNoByScreenSize} = useItemsNoByScreenSize();
+    const [query, setQuery] = useState(state.searchQuery);
+    const [numberOfItems, setNumberOfItems] = useState(itemsNoByScreenSize);
     const { status, data } = useFetchGifs(query, numberOfItems);
-    
-    console.log(status, data, numberOfItems);
 
     useEffect(()=>{
         setNumberOfItems(itemsNoByScreenSize);
@@ -21,7 +20,7 @@ export default function SearchRouteComponent(){
 
     function onQueryUpdate(query: string){
         setQuery(query);
-        dispatch({type: 'searchQuery', payload: query});
+        dispatch({type: ActionsEnum.SEARCH_QUERY, payload: query});
     }
     function whatToDisplay(){
         if(query.trim() === '') return <h2>What are you waiting for? Start searching for some gifs!</h2>
@@ -39,6 +38,6 @@ export default function SearchRouteComponent(){
         {
             whatToDisplay()
         }
-        
+        {state.favoritesMap.size}
     </>;
 }

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import GifItemSchema, {rawDataType} from '../models/gifItemSchema';
 
 function useFetchGifs(query: string, numberOfItems: number) {
-    console.log(numberOfItems);
     const [status, setStatus] = useState('idle');
     const [data, setData] = useState([]);
 
