@@ -1,4 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
+
+export interface ISearchUi {
+    onQueryUpdate?: Function;
+    defaultValue?: string;
+}
 
 function debounce(waitMs = 500){
     let timeout: ReturnType<typeof setTimeout>;
@@ -17,20 +22,19 @@ function debounce(waitMs = 500){
     return {setCallback}
 }
 
-const SearchUiComponent: React.FunctionComponent = () => {
-    const deb = debounce();
-    const [searchQuery, setSearchQuery] = useState('');
+const SearchUiComponent: React.FunctionComponent<ISearchUi> = ({onQueryUpdate, defaultValue}) => {
+    const deb = debounce(200);
     function onKeyup(e: any){
         deb.setCallback(() => {
-            setSearchQuery(e.target.value)
+            onQueryUpdate && onQueryUpdate(e.target.value);
         });
     }
     return <>
         
         <input className="ui-search"
             onKeyUp={onKeyup}
+            defaultValue={defaultValue}
         />
-        {searchQuery}
     </>
 }
 
