@@ -24,6 +24,7 @@ export default function SearchRouteComponent(){
         dispatch({type: 'searchQuery', payload: query});
     }
     function whatToDisplay(){
+        if(query.trim() === '') return <h2>What are you waiting for? Start searching for some gifs!</h2>
         switch(status) {
             case 'loading' : return <Loader/>;
             case 'success' : return <SearchResultComponent results={data}/>;
