@@ -1,5 +1,16 @@
-import React from 'react';
+import {useState, useContext, useEffect} from 'react';
+import SearchResultComponent from '../../searchResults/searchResults';
+import {AppContext} from '../../../models/appContext';
+import arrayFromMap from '../../../tools/arrayFromMap';
 
 export default function FavoriteRouterComponent(){
-    return <div>Favorite route</div>;
+    const { state, dispatch } = useContext(AppContext);
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        setData(arrayFromMap(state.favoritesMap));
+    }, [])
+    return <>
+        <SearchResultComponent results={data}/>
+    </>;
 }
