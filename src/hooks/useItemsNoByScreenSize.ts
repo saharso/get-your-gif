@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import screenWidth from '../ts/screenWidth.type';
+import ItemsPerScreenSize from '../models/itemsPerScreenSize';
 
-function parseScreenSize(): screenWidth {
+function parseScreenSize(): number {
     let size: screenWidth;
     if(window.innerWidth < 500) {
         size = 'mobile'
@@ -10,18 +11,18 @@ function parseScreenSize(): screenWidth {
     } else {
         size = 'desktop';
     }
-    return size;
+    return ItemsPerScreenSize.calc(size);
 }
 
-function useWindowSize() {
-    const [screenWidth, setScreenWidth] = useState(parseScreenSize());
+function useItemsNoByScreenSize() {
+    const [itemsNoByScreenSize, setItemsNoByScreenSize] = useState(parseScreenSize());
     useEffect(() => {
         window.addEventListener('resize', () => {
-            setScreenWidth(parseScreenSize())
+            setItemsNoByScreenSize(parseScreenSize())
         })
     }, []);
 
-    return {screenWidth};
+    return {itemsNoByScreenSize};
 };
 
-export default useWindowSize;
+export default useItemsNoByScreenSize;

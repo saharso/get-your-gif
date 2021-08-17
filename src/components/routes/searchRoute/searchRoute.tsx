@@ -2,23 +2,26 @@ import {useState, useContext, useEffect} from 'react';
 import SearchUiComponent from '../../../ui/search.ui';
 import {AppContext} from '../../../models/appContext';
 import useFetchGifs from '../../../hooks/useFetchGifs';
-import useWindowSize from '../../../hooks/useWindowSize'
+import useItemsNoByScreenSize from '../../../hooks/useItemsNoByScreenSize';
 
 export default function SearchRouteComponent(){
+    const {itemsNoByScreenSize} = useItemsNoByScreenSize();
     const [query, setQuery] = useState('');
+    const [numberOfItems, setNumberOfItems] = useState(itemsNoByScreenSize);
     const { state, dispatch } = useContext(AppContext);
-    const { status, data } = useFetchGifs(query);
-    const {screenWidth} = useWindowSize();
-    console.log(screenWidth);
-    console.log(status, data);
-    useEffect(()=>{
+    const { status, data } = useFetchGifs(query, numberOfItems);
+    
+    console.log(status, data, numberOfItems);
 
-    },[screenWidth])
+    useEffect(()=>{
+        setNumberOfItems(itemsNoByScreenSize);
+    },[itemsNoByScreenSize]);
+
     function onQueryUpdate(query: string){
         setQuery(query);
         dispatch({type: 'searchQuery', payload: query});
-        console.log(state);
     }
+
     return <>
         <SearchUiComponent 
             defaultValue={state.searchQuery}
