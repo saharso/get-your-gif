@@ -1,5 +1,5 @@
 import {useState, useContext, useEffect} from 'react';
-import SearchResultComponent from '../../searchResults/searchResults';
+import GifItemsGalleryComponent from '../../gifItemsGallery/gifItemsGallery';
 import {AppContext} from '../../../models/appContext';
 import arrayFromMap from '../../../tools/arrayFromMap';
 
@@ -13,6 +13,6 @@ export default function FavoriteRouterComponent(){
 
     return <>
         <h2>Favorites</h2>
-        <SearchResultComponent results={data}/>
+        <GifItemsGalleryComponent results={data}/>
     </>;
 }

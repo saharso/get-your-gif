@@ -5,7 +5,7 @@ const GifItemComponent = React.lazy(()=>import('../gifItem/gifItem'));
 export interface ISearchResults {
     results: GifItemSchema[];
 }
-const SearchResultComponent: React.FunctionComponent<ISearchResults> = ({results}) => {
+const GifItemsGalleryComponent: React.FunctionComponent<ISearchResults> = ({results}) => {
     return <article className="app-search-results">
         {results.length === 0 && <h2>No results found</h2>}
         {
@@ -14,4 +14,4 @@ const SearchResultComponent: React.FunctionComponent<ISearchResults> = ({results
     </article>;
 }
 
-export default SearchResultComponent;
+export default GifItemsGalleryComponent;

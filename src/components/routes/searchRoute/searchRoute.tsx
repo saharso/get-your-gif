@@ -3,7 +3,7 @@ import SearchUiComponent from '../../../ui/search';
 import {AppContext} from '../../../models/appContext';
 import useFetchGifs from '../../../hooks/useFetchGifs';
 import useItemsNoByScreenSize from '../../../hooks/useItemsNoByScreenSize';
-import SearchResultComponent from '../../searchResults/searchResults';
+import GifItemsGalleryComponent from '../../gifItemsGallery/gifItemsGallery';
 import Loader from '../../../ui/loader';
 import ActionsEnum from '../../../models/actions.enum';
 
@@ -26,7 +26,7 @@ export default function SearchRouteComponent(){
         if(query.trim() === '') return <h2>What are you waiting for? Start searching for some gifs!</h2>
         switch(status) {
             case 'loading' : return <Loader/>;
-            case 'success' : return <SearchResultComponent results={data}/>;
+            case 'success' : return <GifItemsGalleryComponent results={data}/>;
             case 'error' : return <h2>Something went horribly wrong</h2>;
         }
     }
