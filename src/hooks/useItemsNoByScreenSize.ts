@@ -1,28 +1,29 @@
 import { useState, useEffect } from 'react';
 import screenWidth from '../ts/screenWidth.type';
-import ItemsPerScreenSize from '../models/itemsPerScreenSize';
+import itemsPerScreenWidth from '../models/itemsPerScreenWidth';
+import Screens from '../models/screens';
 
-function parseScreenSize(): number {
-    let size: screenWidth;
-    if(window.innerWidth < 500) {
-        size = 'mobile'
-    } else if (window.innerWidth < 800) {
-        size = 'tablet';
+function parseScreenWidth(): number {
+    let screenWidth: screenWidth;
+    if (window.innerWidth < Screens.mobile) {
+        screenWidth = 'mobile'
+    } else if (window.innerWidth < Screens.tablet) {
+        screenWidth = 'tablet';
     } else {
-        size = 'desktop';
+        screenWidth = 'desktop';
     }
-    return ItemsPerScreenSize.calc(size);
+    return itemsPerScreenWidth.calc(screenWidth);
 }
 
 function useItemsNoByScreenSize() {
-    const [itemsNoByScreenSize, setItemsNoByScreenSize] = useState(parseScreenSize());
+    const [itemsNoByScreenSize, setItemsNoByScreenSize] = useState(parseScreenWidth());
     useEffect(() => {
         window.addEventListener('resize', () => {
-            setItemsNoByScreenSize(parseScreenSize())
-        })
+            setItemsNoByScreenSize(parseScreenWidth())
+        });
     }, []);
 
     return {itemsNoByScreenSize};
-};
+}
 
 export default useItemsNoByScreenSize;

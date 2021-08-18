@@ -17,7 +17,7 @@ function debounce(waitMs = 500){
     return {setCallback}
 }
 
-const debouncer = debounce(200);
+const debouncer = debounce();
 
 export default function useDebounce(str: string){
   const [value, setValue] = useState<string>('');

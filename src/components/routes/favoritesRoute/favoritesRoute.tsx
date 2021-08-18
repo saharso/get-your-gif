@@ -9,10 +9,10 @@ export default function FavoriteRouterComponent(){
 
     useEffect(() => {
         setData(arrayFromMap(state.favoritesMap));
-        console.log(state.favoritesMap)
     }, [state]);
 
     return <>
+        <h2>Favorites</h2>
         <SearchResultComponent results={data}/>
     </>;
 }
