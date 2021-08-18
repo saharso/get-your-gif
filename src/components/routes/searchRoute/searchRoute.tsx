@@ -6,6 +6,7 @@ import useItemsNoByScreenSize from '../../../hooks/useItemsNoByScreenSize';
 import GifItemsGalleryComponent from '../../gifItemsGallery/gifItemsGallery';
 import Loader from '../../../ui/loader';
 import ActionsEnum from '../../../models/actions.enum';
+import SearchHistoryComponent from '../../searchHistory/searchHistory';
 
 export default function SearchRouteComponent(){
     const { state, dispatch } = useContext(AppContext);
@@ -22,22 +23,28 @@ export default function SearchRouteComponent(){
         setQuery(query);
         dispatch({type: ActionsEnum.SEARCH_QUERY, payload: query});
     }
-    function whatToDisplay(){
+    function WhatToDisplay(){
         if(query.trim() === '') return <h2>What are you waiting for? Start searching for some gifs!</h2>
         switch(status) {
             case 'loading' : return <Loader/>;
             case 'success' : return <GifItemsGalleryComponent results={data}/>;
             case 'error' : return <h2>Something went horribly wrong</h2>;
         }
+        return null;
     }
-    return <>
-        <SearchUiComponent 
-            defaultValue={state.searchQuery}
-            onQueryUpdate={onQueryUpdate}
-        /> {state.searchQuery}
-        {
-            whatToDisplay()
-        }
-        {state.favoritesMap.size}
-    </>;
+    return <article>
+        <header>
+            <div className="t-row">
+                <SearchUiComponent 
+                    defaultValue={state.searchQuery}
+                    onQueryUpdate={onQueryUpdate}
+                /> 
+            </div>
+            
+            <SearchHistoryComponent searchQuery={state.searchQuery} />
+        </header>
+        <main>
+            <WhatToDisplay/>
+        </main>
+    </article>;
 }
