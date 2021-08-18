@@ -3,7 +3,7 @@ import screenWidth from '../ts/screenWidth.type';
 import itemsPerScreenWidth from '../models/itemsPerScreenWidth';
 import Screens from '../models/screens';
 
-function parseScreenWidth(): number {
+function getItemsNoByScreenWidth(): number {
     let screenWidth: screenWidth;
     if (window.innerWidth < Screens.mobile) {
         screenWidth = 'mobile'
@@ -12,14 +12,15 @@ function parseScreenWidth(): number {
     } else {
         screenWidth = 'desktop';
     }
+    
     return itemsPerScreenWidth.calc(screenWidth);
 }
 
 function useItemsNoByScreenSize() {
-    const [itemsNoByScreenSize, setItemsNoByScreenSize] = useState(parseScreenWidth());
+    const [itemsNoByScreenSize, setItemsNoByScreenSize] = useState(getItemsNoByScreenWidth());
     useEffect(() => {
         window.addEventListener('resize', () => {
-            setItemsNoByScreenSize(parseScreenWidth())
+            setItemsNoByScreenSize(getItemsNoByScreenWidth())
         });
     }, []);
 
