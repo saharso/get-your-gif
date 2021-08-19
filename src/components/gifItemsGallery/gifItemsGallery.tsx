@@ -1,9 +1,10 @@
 import React, {useState, useContext, useEffect, Suspense} from 'react';
 import GifItemSchema from '../../models/gifItemSchema';
 import Loader from '../../ui/loader';
+
 const GifItemComponent = React.lazy(()=>import('../gifItem/gifItem'));
 export interface IFavoriteUpdates {
-    itemId: string;
+    item: GifItemSchema;
     isFavorite: boolean
 }
 interface ISearchResults {
@@ -19,8 +20,8 @@ const GifItemsGalleryComponent: React.FunctionComponent<ISearchResults> = ({resu
             results.map(item => <Suspense key={item.id} fallback={<Loader/>}>
                 <GifItemComponent 
                     details={item}
-                    onFavoritesUpdate={(isFavorite: boolean, itemId: string)=>{
-                        onFavoriteItemsUpdated && onFavoriteItemsUpdated({itemId, isFavorite})
+                    onFavoritesUpdate={(isFavorite: boolean, item: GifItemSchema )=>{
+                        onFavoriteItemsUpdated && onFavoriteItemsUpdated({item, isFavorite})
                     }}
                 />
             </Suspense>)

@@ -9,15 +9,23 @@ import ActionsEnum from '../../../models/actions.enum';
 import SearchHistoryComponent from '../../searchHistory/searchHistory';
 import IPojo from '../../../models/pojo';
 
+function updateFavorites(favoriteUpdate: IFavoriteUpdates, dispatch: Function) {
+    if(!favoriteUpdate) return;
+    favoriteUpdate && favoriteUpdate.isFavorite ? 
+        dispatch({type: ActionsEnum.ADD_TO_FAVORITES, payload: favoriteUpdate.item}) :
+        dispatch({type: ActionsEnum.REMOVE_FROM_FAVORITES, payload: favoriteUpdate?.item});
+
+}
+
 export default function SearchRouteComponent(){
     const { state, dispatch } = useContext(AppContext);
     const {itemsNoByScreenSize} = useItemsNoByScreenSize();
     const [query, setQuery] = useState(state.searchQuery);
-    const [favoriteUpdate, setFavoriteUpdate] = useState<IFavoriteUpdates>({isFavorite: false, itemId: ''});
+    const [favoriteUpdate, setFavoriteUpdate] = useState<IFavoriteUpdates>();
     const [numberOfItems, setNumberOfItems] = useState(itemsNoByScreenSize);
     const { status, data } = useFetchGifs(query, numberOfItems);
 
-    const displays: IPojo = {
+    const displaysByApiState: IPojo = {
         'loading': <Loader/>,
         'success': <GifItemsGalleryComponent 
             results={data} 
@@ -31,9 +39,7 @@ export default function SearchRouteComponent(){
     useEffect(()=>{
         setNumberOfItems(itemsNoByScreenSize);
         dispatch({type: ActionsEnum.SEARCH_QUERY, payload: query});
-        favoriteUpdate.isFavorite ? 
-            dispatch({type: ActionsEnum.ADD_TO_FAVORITES, payload: favoriteUpdate}) :
-            dispatch({type: ActionsEnum.REMOVE_FROM_FAVORITES, payload: favoriteUpdate});
+        favoriteUpdate && updateFavorites(favoriteUpdate, dispatch);
     },[itemsNoByScreenSize, query, favoriteUpdate]);
 
     return <article>
@@ -48,8 +54,8 @@ export default function SearchRouteComponent(){
             <SearchHistoryComponent searchQuery={query}/>
         </header>
         <main>
-            {!query.trim() && <h2>What are you waiting for? Start searching for some gifs!</h2>}
-            {displays[status] || null}
+            {!query.trim() && !data.length && <h2>What are you waiting for? Start searching for some gifs!</h2>}
+            {displaysByApiState[status] || null}
         </main>
     </article>;
 }

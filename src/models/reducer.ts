@@ -9,6 +9,7 @@ function reducer(state: any, action: IAction): Partial<StateModel> {
       case ActionsEnum.ADD_TO_FAVORITES:
         _state = {...state};
         _state.favoritesMap.set(action.payload.id, action.payload);
+        debugger;
         return _state;
       case ActionsEnum.REMOVE_FROM_FAVORITES:
         _state = {...state};
