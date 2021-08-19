@@ -1,3 +1,5 @@
+
+import './App.scss';
 import React, {useReducer} from 'react';
 import { BrowserRouter } from "react-router-dom";
 import HeaderComponent from './components/header/headerCompoment';
