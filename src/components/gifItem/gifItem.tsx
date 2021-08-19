@@ -1,4 +1,5 @@
-import {useState} from 'react';
+import {useState, useContext} from 'react';
+import { AppContext } from '../../models/appContext';
 import GifItemSchema from '../../models/gifItemSchema';
 
 export interface IGifItemParams {
@@ -11,12 +12,10 @@ function toggleFavoriteText(condition: boolean){
 }
 
 const GifItemComponent: React.FunctionComponent<IGifItemParams> = ({details, onFavoritesUpdate}) => {
-
-    const [isFavorite, setIsFavorite] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(details.isFavorite);
 
     function toggleFavorites() {
         setIsFavorite(!isFavorite);
-        console.log(isFavorite);
         onFavoritesUpdate && onFavoritesUpdate(!isFavorite, details);
     }
 

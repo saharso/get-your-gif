@@ -1,3 +1,4 @@
+import StateModel from "./stateModel";
 
 export type rawDataType = {
     id: string;
@@ -14,10 +15,10 @@ export default class GifItemSchema {
     id: string;
     isFavorite: boolean;
     imageUrl: string;
-    constructor(raw: rawDataType){
+    constructor(raw: rawDataType, state?: StateModel){
         this.title = raw.title;
         this.id = raw.id;
         this.imageUrl = raw.images.original.url;
-        this.isFavorite = false;
+        this.isFavorite = !!state?.favoritesMap.has(this.id);
     }
 }
