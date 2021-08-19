@@ -56,7 +56,7 @@ export default function SearchRouteComponent(){
             <div className="t-row">
                 <SearchUiComponent 
                     defaultValue={state.searchQuery}
-                    onQueryUpdate={(query)=> { console.log('history updates'); setQuery(query); }}
+                    onQueryUpdate={(query)=> { setQuery(query); }}
                 /> 
             </div>
             

@@ -5,7 +5,6 @@ export interface ISearchHistory {
 }
 
 const SearchHistoryComponent: React.FunctionComponent<ISearchHistory> = ({searchQuery})=>{
-    console.log(searchQuery)
     return <section>
         {searchQuery.map((string, index) => (
             <button key={index}>

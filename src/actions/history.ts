@@ -8,6 +8,5 @@ export default function history(state: StateModel, action: IAction){
     if(!action.payload) return clone; 
     historySet.add(action.payload);
     clone.searchHistory = Array.from(historySet);
-    console.log(clone.searchHistory);
     return clone;
 }
