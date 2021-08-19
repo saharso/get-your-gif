@@ -1,5 +1,5 @@
-interface IPojo {
-    [key: string]: any;
+interface IPojo<T = {}> {
+    [key: string]: any | T;
 }
 
 export default IPojo;

@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 export interface ISearchHistory {
-    searchQuery: string;
+    searchQuery: string[];
 }
-const searchHistory: Set<string> = new Set();
 
 const SearchHistoryComponent: React.FunctionComponent<ISearchHistory> = ({searchQuery})=>{
-    
+    console.log(searchQuery)
     return <section>
-        {Array.from(searchHistory).map((string, index) => (
+        {searchQuery.map((string, index) => (
             <button key={index}>
                 {string}
             </button>

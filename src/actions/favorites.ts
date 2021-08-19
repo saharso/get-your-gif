@@ -1,17 +1,17 @@
+import { StateModel } from '../models/store';
 import IAction from '../ts/actions.interface';
-import IPojo from '../ts/pojo.interface';
 
-export default function favorites(state: IPojo, action: IAction){
-    let _state;
+export default function favorites(state: StateModel, action: IAction){
+    let clonedState: StateModel;
     function add (){
-        _state = {...state};
-        _state.favoritesMap.set(action.payload.id, action.payload);
-        return _state;
+        clonedState = {...state};
+        clonedState.favoritesMap.set(action.payload.id, action.payload);
+        return clonedState;
     }
     function remove(){
-        _state = {...state};
-        _state.favoritesMap.delete(action.payload.id);
-        return _state;;
+        clonedState = {...state};
+        clonedState.favoritesMap.delete(action.payload.id);
+        return clonedState;;
     }
     return {
         add, remove,
