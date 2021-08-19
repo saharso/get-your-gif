@@ -1,5 +1,5 @@
 import React from 'react';
-import StateModel from './stateModel';
+import store from './store';
 
-export const initialState = new StateModel();
+export const initialState = store;
 export const AppContext = React.createContext<any>({state: initialState, dispatch: undefined});

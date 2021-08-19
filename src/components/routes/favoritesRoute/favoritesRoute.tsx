@@ -1,7 +1,7 @@
 import {useState, useContext, useEffect} from 'react';
 import GifItemsGalleryComponent from '../../gifItemsGallery/gifItemsGallery';
 import {AppContext} from '../../../models/appContext';
-import arrayFromMap from '../../../tools/arrayFromMap';
+import arrayFromMap from '../../../actions/arrayFromMap';
 
 export default function FavoriteRouterComponent(){
     const { state, dispatch } = useContext(AppContext);

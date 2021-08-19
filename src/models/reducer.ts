@@ -1,19 +1,14 @@
-import StateModel from './stateModel';
+import store, { StateModel } from './store';
 import ActionsEnum from './actions.enum';
 import IAction from '../ts/actions.interface';
-let _state;
-function reducer(state: any, action: IAction): Partial<StateModel> {
+import IPojo from '../ts/pojo.interface';
+import favorites from '../actions/favorites';
+
+function reducer(state: IPojo, action: IAction): Partial<StateModel> {
     switch (action.type) {
-      case ActionsEnum.SEARCH_QUERY:
-        return {...state, searchQuery: action.payload};
-      case ActionsEnum.ADD_TO_FAVORITES:
-        _state = {...state};
-        _state.favoritesMap.set(action.payload.id, action.payload);
-        return _state;
-      case ActionsEnum.REMOVE_FROM_FAVORITES:
-        _state = {...state};
-        _state.favoritesMap.delete(action.payload.id);
-        return _state;;
+      case ActionsEnum.SEARCH_QUERY: return {...state, searchQuery: action.payload};
+      case ActionsEnum.ADD_TO_FAVORITES: return favorites(state, action).add()
+      case ActionsEnum.REMOVE_FROM_FAVORITES: return favorites(state, action).remove();
       default:
         throw new Error();
     }

@@ -7,7 +7,7 @@ import GifItemsGalleryComponent, {IFavoriteUpdates} from '../../gifItemsGallery/
 import Loader from '../../../ui/loader';
 import ActionsEnum from '../../../models/actions.enum';
 import SearchHistoryComponent from '../../searchHistory/searchHistory';
-import IPojo from '../../../models/pojo';
+import IPojo from '../../../ts/pojo.interface';
 
 function updateFavorites(favoriteUpdate: IFavoriteUpdates, dispatch: Function) {
     if(!favoriteUpdate) return;

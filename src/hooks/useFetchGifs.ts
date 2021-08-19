@@ -14,7 +14,7 @@ function useFetchGifs(query: string, numberOfItems: number) {
             try {
                 const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=54YWDzpnKwpreX21oW4jevboPLRjbRF5&q=${query}&limit=${numberOfItems}`);
                 const data = await response.json();
-                const parsedData = data.data.map((e: rawDataType) => new GifItemSchema(e, state))
+                const parsedData = data.data.map((e: rawDataType) => new GifItemSchema(e))
                 setData(parsedData);
                 setStatus('success');
             } catch(error) {
