@@ -55,12 +55,16 @@ export default function SearchRouteComponent(){
         <header>
             <div className="t-row">
                 <SearchUiComponent 
-                    defaultValue={state.searchQuery}
+                    defaultValue={query}
                     onQueryUpdate={(query)=> { setQuery(query); }}
+                    onLoad={(inputElement) => inputElement.focus()}
                 /> 
             </div>
             
-            <SearchHistoryComponent searchQuery={searchHistory}/>
+            <SearchHistoryComponent 
+                searchQuery={searchHistory}
+                onHistoryItemSelect={(selected)=>{setQuery(selected)}}    
+            />
         </header>
         <main>
             {!query.trim() && !data.length && <h2>What are you waiting for? Start searching for some gifs!</h2>}

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-
+import React from 'react';
 export interface ISearchHistory {
     searchQuery: string[];
+    onHistoryItemSelect?: (string: string) => void;
 }
 
-const SearchHistoryComponent: React.FunctionComponent<ISearchHistory> = ({searchQuery})=>{
+const SearchHistoryComponent: React.FunctionComponent<ISearchHistory> = ({searchQuery, onHistoryItemSelect})=>{
     return <section>
         {searchQuery.map((string, index) => (
-            <button key={index}>
+            <button key={index} onClick={() => onHistoryItemSelect && onHistoryItemSelect(string)}>
                 {string}
             </button>
         ))}
