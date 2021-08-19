@@ -3,48 +3,53 @@ import SearchUiComponent from '../../../ui/search';
 import {AppContext} from '../../../models/appContext';
 import useFetchGifs from '../../../hooks/useFetchGifs';
 import useItemsNoByScreenSize from '../../../hooks/useItemsNoByScreenSize';
-import GifItemsGalleryComponent from '../../gifItemsGallery/gifItemsGallery';
+import GifItemsGalleryComponent, {IFavoriteUpdates} from '../../gifItemsGallery/gifItemsGallery';
 import Loader from '../../../ui/loader';
 import ActionsEnum from '../../../models/actions.enum';
 import SearchHistoryComponent from '../../searchHistory/searchHistory';
+import IPojo from '../../../models/pojo';
 
 export default function SearchRouteComponent(){
     const { state, dispatch } = useContext(AppContext);
     const {itemsNoByScreenSize} = useItemsNoByScreenSize();
     const [query, setQuery] = useState(state.searchQuery);
+    const [favoriteUpdate, setFavoriteUpdate] = useState<IFavoriteUpdates>({isFavorite: false, itemId: ''});
     const [numberOfItems, setNumberOfItems] = useState(itemsNoByScreenSize);
     const { status, data } = useFetchGifs(query, numberOfItems);
 
+    const displays: IPojo = {
+        'loading': <Loader/>,
+        'success': <GifItemsGalleryComponent 
+            results={data} 
+            onFavoriteItemsUpdated={(favoriteUpdate: IFavoriteUpdates)=>{
+                setFavoriteUpdate(favoriteUpdate);
+            }}
+        />,
+        'error': <h2>Something went horribly wrong</h2>,
+    }
+
     useEffect(()=>{
         setNumberOfItems(itemsNoByScreenSize);
-    },[itemsNoByScreenSize]);
-
-    function onQueryUpdate(query: string){
-        setQuery(query);
         dispatch({type: ActionsEnum.SEARCH_QUERY, payload: query});
-    }
-    function WhatToDisplay(){
-        if(query.trim() === '') return <h2>What are you waiting for? Start searching for some gifs!</h2>
-        switch(status) {
-            case 'loading' : return <Loader/>;
-            case 'success' : return <GifItemsGalleryComponent results={data}/>;
-            case 'error' : return <h2>Something went horribly wrong</h2>;
-        }
-        return null;
-    }
+        favoriteUpdate.isFavorite ? 
+            dispatch({type: ActionsEnum.ADD_TO_FAVORITES, payload: favoriteUpdate}) :
+            dispatch({type: ActionsEnum.REMOVE_FROM_FAVORITES, payload: favoriteUpdate});
+    },[itemsNoByScreenSize, query, favoriteUpdate]);
+
     return <article>
         <header>
             <div className="t-row">
                 <SearchUiComponent 
                     defaultValue={state.searchQuery}
-                    onQueryUpdate={onQueryUpdate}
+                    onQueryUpdate={(query)=> {setQuery(query); console.log(query)}}
                 /> 
             </div>
             
-            <SearchHistoryComponent searchQuery={state.searchQuery} />
+            <SearchHistoryComponent searchQuery={query}/>
         </header>
         <main>
-            <WhatToDisplay/>
+            {!query.trim() && <h2>What are you waiting for? Start searching for some gifs!</h2>}
+            {displays[status] || null}
         </main>
     </article>;
 }

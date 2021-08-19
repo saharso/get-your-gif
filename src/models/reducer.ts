@@ -13,7 +13,7 @@ function reducer(state: any, action: IAction): Partial<StateModel> {
       case ActionsEnum.REMOVE_FROM_FAVORITES:
         _state = {...state};
         _state.favoritesMap.delete(action.payload.id);
-        return _state;
+        return _state;;
       default:
         throw new Error();
     }
