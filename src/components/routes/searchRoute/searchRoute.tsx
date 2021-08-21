@@ -6,15 +6,15 @@ import useFetchGifs from '../../../hooks/useFetchGifs';
 import useItemsNoByScreenSize from '../../../hooks/useItemsNoByScreenSize';
 import GifItemsGalleryComponent, {IFavoriteUpdates} from '../../gifItemsGallery/gifItemsGallery';
 import Loader from '../../../ui/loader/loader';
-import ActionsEnum from '../../../models/actions.enum';
 import SearchHistoryComponent from '../../searchHistory/searchHistory';
 import IPojo from '../../../ts/pojo.interface';
 import RoutesController from '../routesController';
+import Notification from '../../../ui/notification/notification';
 
 export default function SearchRouteComponent(){
     const { state, dispatch } = useContext(AppContext);
     const {itemsNoByScreenSize} = useItemsNoByScreenSize();
-    const [query, setQuery] = useState(state.searchQuery || 'fun');
+    const [query, setQuery] = useState(state.searchQuery || '');
     const [searchHistory, setSearchHistory] = useState(state.searchHistory);
     const [favoriteUpdate, setFavoriteUpdate] = useState<IFavoriteUpdates>();
     const [numberOfItems, setNumberOfItems] = useState(itemsNoByScreenSize);
@@ -61,7 +61,7 @@ export default function SearchRouteComponent(){
 
         </header>
         <main>
-            {!query.trim() && !data.length && <h2>What are you waiting for? Start searching for some gifs!</h2>}
+            {!query.trim() && !data.length && <Notification label="What are you waiting for? Start searching for some gifs!" />}
             {displaysByApiState[status] || null}
         </main>
     </article>;

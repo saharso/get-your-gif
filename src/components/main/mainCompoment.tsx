@@ -7,7 +7,7 @@ export type IHeaderProps = {
     routes: IRoute[];
 }
 const MainComponent: React.FunctionComponent<IHeaderProps> = ({routes}) => {
-    return <main className="gyg-main layout-overflowYAuto">
+    return <main className="gyg-main layout-scrollY">
         <Switch>
             {
             routes && routes.map(route => {

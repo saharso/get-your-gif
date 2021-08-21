@@ -1,4 +1,5 @@
 @import '../../assets/scss/config.scss';
+@import '../../assets/scss/space.scss';
 
 .gyg-gifItem {
     display: grid;
@@ -14,5 +15,6 @@
     }
 }
 .gig-gifItem__info {
-    border: 1px solid red;
+    border-top: 1px solid var(--border-color);
+    @extend .space-genericBox;
 }

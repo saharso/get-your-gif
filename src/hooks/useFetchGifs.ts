@@ -8,7 +8,7 @@ function useFetchGifs(query: string, numberOfItems: number) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        if(!query) return;
+        if(!query.trim()) return;
         const fetchData = async () => {
             setStatus('loading');
             try {

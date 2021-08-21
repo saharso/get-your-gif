@@ -14,3 +14,7 @@
   font-weight: $fontWeight-light;
   src: local('Lato'), url(../fonts/Lato-Light.ttf) format('woff');
 }
+
+.font-h2 {
+  font-size: $fontSize-h2;
+}

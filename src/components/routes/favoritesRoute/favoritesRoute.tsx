@@ -12,13 +12,17 @@ export default function FavoriteRouterComponent(){
         setData(arrayFromMap(state.favoritesMap));
     }, [state]);
 
-    return <>
-        <h2>Favorites</h2>
-        <GifItemsGalleryComponent 
-            results={data}
-            onFavoriteItemsUpdated={(favoriteUpdate: IFavoriteUpdates)=>{
-                RoutesController(dispatch).favoriteDispatches(favoriteUpdate);
-            }}            
-        />
-    </>;
+    return <article className="gyt-favoritesRoute layout-gridHeaderMain">
+        <header className="space-paddingX space-row">
+            <h2 className="font-h2">Favorites</h2>
+        </header>
+        <main className="layout-scrollY">
+            <GifItemsGalleryComponent 
+                results={data}
+                onFavoriteItemsUpdated={(favoriteUpdate: IFavoriteUpdates)=>{
+                    RoutesController(dispatch).favoriteDispatches(favoriteUpdate);
+                }}            
+            />
+        </main>
+    </article>;
 }

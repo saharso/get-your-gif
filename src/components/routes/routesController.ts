@@ -4,6 +4,8 @@ import { IFavoriteUpdates } from '../gifItemsGallery/gifItemsGallery';
 
 function RoutesController(dispatch: Function) {
     function queryDispatches(query: string) {
+        console.log(!!query.trim())
+        if(!query.trim()) return;
         dispatch({type: ActionsEnum.SEARCH_QUERY, payload: query});
         dispatch({type: ActionsEnum.UPDATE_HISTORY, payload: query});
     }

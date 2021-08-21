@@ -23,13 +23,15 @@ const Input: React.FunctionComponent<IInputProps> = ({onQueryUpdate, defaultValu
 
     return <>
         {/* "key" is essential for default value to change on render */}
-        <input className="ui-input"
-            onChange={(e: any) => {const target = e.target as HTMLInputElement; setValue(target.value)}}
-            defaultValue={defaultValue}
-            key={defaultValue}
-            ref={inputRef}
-            placeholder={placeholder}
-        />
+        <div className="ui-input">
+            <input className="ui-input__field"
+                onChange={(e: any) => {const target = e.target as HTMLInputElement; setValue(target.value)}}
+                defaultValue={defaultValue}
+                key={defaultValue}
+                ref={inputRef}
+                placeholder={placeholder}
+            />
+        </div>
     </>
 }
 

@@ -23,14 +23,15 @@ const GifItemComponent: React.FunctionComponent<IGifItemParams> = ({details, onF
             <img src={details.imageUrl} alt={details.title}/>
         </figure>
         <div className="gig-gifItem__info">
-            <h3>
-                {details.title} {isFavorite}
-            </h3>
             <Button 
                 onClick={()=>toggleFavorites()} 
                 label={toggleFavoriteText(isFavorite)}
                 isActive={isFavorite}
+                className="space-row"
             />
+            <h3>
+                {details.title} {isFavorite}
+            </h3>
         </div>
     </section>;
 }

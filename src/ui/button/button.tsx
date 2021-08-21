@@ -5,12 +5,13 @@ export interface IButtonProps {
     onClick: Function;
     label: String;
     isActive?: boolean;
+    className?: string;
 }
 
-const Button: React.FunctionComponent<IButtonProps> = ({onClick, label, isActive})=>{
+const Button: React.FunctionComponent<IButtonProps> = ({onClick, label, isActive, className})=>{
     return  (
         <button 
-            className={classnames('ui-button', {'is-active': isActive})}
+            className={classnames('ui-button', className, {'is-active': isActive})}
             onClick={(e) => onClick(e)}
         >
             {label}

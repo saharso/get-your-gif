@@ -1,0 +1,12 @@
+
+@import '../../assets/scss/config.scss';
+@import '../../assets/scss/space.scss';
+@import '../../assets/scss/layout.scss';
+.ui-notification {
+    font-size: $fontSize-h2;
+    @extend .space-genericBox;
+    @extend .layout-alignXY;
+    width: 100%;
+    color: var(--border-color);
+    transform: skewX($gyg-skew);
+}

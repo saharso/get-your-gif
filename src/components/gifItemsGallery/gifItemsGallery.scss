@@ -6,8 +6,8 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     gap: $unit-big;
-}
-.gig-gifItem__info {
-    display: grid;
-    grid-template-rows: 1fr auto;
+    &.is-empty {
+        grid-template-columns: 1fr;  
+        grid-template-rows: 100%;  
+    }
 }

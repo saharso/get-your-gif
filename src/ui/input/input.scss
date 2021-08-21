@@ -2,19 +2,25 @@
 @import '../../assets/scss/space.scss';
 
 .ui-input {
-    width: 100%;
     border: 1px solid var(--border-color);
-    font-size: $unit * 3;
     font-weight: $fontWeight-light;
     border-radius: $unit * 1.5;
     background: transparent;
     @extend .space-genericBox;
-    &:focus {
-        outline: none;
+    transform: skewX($gyg-skew);
+    &:focus-within {
         box-shadow: 0px 0px 27px 0px rgba(#3dcad8,0.65)
 
     }
-    ::placeholder {
-        color: red !important;
+}
+.ui-input__field {
+    border: none;
+    font-size: $unit * 3;
+    width: 100%;
+    &:focus {
+        outline: none;
+    }
+    &::placeholder {
+        color: var(--border-color);
     }
 }
