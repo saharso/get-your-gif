@@ -1,8 +1,9 @@
 import './headerComponent.scss';
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import IRoute from '../../ts/route.interface';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
+import { AppContext } from '../../models/appContext';
 
 export type IHeaderProps = {
     title?: string;
@@ -10,7 +11,12 @@ export type IHeaderProps = {
 }
 const HeaderComponent: React.FunctionComponent<IHeaderProps> = ({title, routes}) => {
 
+    const { state, dispatch } = useContext(AppContext);
     const [isActive, setIsActive] = useState(0);
+
+    function getFavoriteCounter(to?: string){
+        return to === '/favorites' ? ` (${state.favoritesMap.size})` : '';
+    }
 
     return <header className="gyg-header">
         <div className="app-header__top">
@@ -37,7 +43,7 @@ const HeaderComponent: React.FunctionComponent<IHeaderProps> = ({title, routes})
                         key={route.to}
                         to={route.to}
                         onClick={()=>{setIsActive(index)}}
-                    >{route.title}</Link>
+                    >{route.title} {getFavoriteCounter(route.to)}</Link>
                 ))
             }
         </nav>
