@@ -1,0 +1,7 @@
+@import '../../assets/scss/config.scss';
+
+.ui-wordBox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $unit * 0.2;
+}
