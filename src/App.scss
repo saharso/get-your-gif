@@ -29,6 +29,11 @@ body {
     font-size: calc(1vw + 1px);
   }
 }
+@media (orientation: landscape) and (max-height: 800px) {
+  body {
+    font-size: calc(1.6vh + 1px);
+  }
+}
 .gyg-wrapper {
   height: 100%;
   display: grid;

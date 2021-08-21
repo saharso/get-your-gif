@@ -9,18 +9,7 @@ import Loader from '../../../ui/loader/loader';
 import ActionsEnum from '../../../models/actions.enum';
 import SearchHistoryComponent from '../../searchHistory/searchHistory';
 import IPojo from '../../../ts/pojo.interface';
-
-function queryDispatches(dispatch: Function, query: string) {
-    dispatch({type: ActionsEnum.SEARCH_QUERY, payload: query});
-    dispatch({type: ActionsEnum.UPDATE_HISTORY, payload: query});
-}
-
-function favoriteDispatches(dispatch: Function, favoriteUpdate?: IFavoriteUpdates) {
-    if(!favoriteUpdate) return;
-    favoriteUpdate && favoriteUpdate.isFavorite ? 
-        dispatch({type: ActionsEnum.ADD_TO_FAVORITES, payload: favoriteUpdate.item}) :
-        dispatch({type: ActionsEnum.REMOVE_FROM_FAVORITES, payload: favoriteUpdate?.item});
-}
+import RoutesController from '../routesController';
 
 export default function SearchRouteComponent(){
     const { state, dispatch } = useContext(AppContext);
@@ -44,8 +33,8 @@ export default function SearchRouteComponent(){
 
     useEffect(()=>{
         setNumberOfItems(itemsNoByScreenSize);
-        queryDispatches(dispatch, query);
-        favoriteDispatches(dispatch, favoriteUpdate);
+        RoutesController(dispatch).queryDispatches(query);
+        RoutesController(dispatch).favoriteDispatches(favoriteUpdate);
     },[itemsNoByScreenSize, query, favoriteUpdate]);
 
     useEffect(()=>{

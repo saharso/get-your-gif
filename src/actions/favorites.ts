@@ -6,11 +6,13 @@ export default function favorites(state: StateModel, action: IAction){
     function add (){
         clonedState = {...state};
         clonedState.favoritesMap.set(action.payload.id, action.payload);
+        action.payload.isFavorite = true;
         return clonedState;
     }
     function remove(){
         clonedState = {...state};
         clonedState.favoritesMap.delete(action.payload.id);
+        action.payload.isFavorite = false;
         return clonedState;;
     }
     return {
