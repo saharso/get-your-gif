@@ -1,15 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
+import Button from '../../ui/button/button';
 export interface ISearchHistory {
-    searchQuery: string[];
+    searchHistory: string[];
+    searchQuery: string;
     onHistoryItemSelect?: (string: string) => void;
 }
 
-const SearchHistoryComponent: React.FunctionComponent<ISearchHistory> = ({searchQuery, onHistoryItemSelect})=>{
+const SearchHistoryComponent: React.FunctionComponent<ISearchHistory> = ({searchHistory, searchQuery, onHistoryItemSelect})=>{
     return <section>
-        {searchQuery.map((string, index) => (
-            <button key={index} onClick={() => onHistoryItemSelect && onHistoryItemSelect(string)}>
-                {string}
-            </button>
+        {searchHistory.map((value, index) => (
+            <Button 
+                key={index}
+                label={value}
+                onClick={() => {
+                    onHistoryItemSelect && onHistoryItemSelect(value);
+                }}
+                isActive={value === searchQuery}
+            />
         ))}
     </section>
 }

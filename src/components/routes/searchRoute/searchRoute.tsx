@@ -61,7 +61,8 @@ export default function SearchRouteComponent(){
                 /> 
             </div>
             <SearchHistoryComponent 
-                searchQuery={searchHistory}
+                searchHistory={searchHistory}
+                searchQuery={query}
                 onHistoryItemSelect={(selected)=>{setQuery(selected)}}    
             />
         </header>

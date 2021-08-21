@@ -1,17 +1,21 @@
+import './button.scss';
+import classnames from 'classnames';
 import React from 'react';
-export interface ISearchHistory {
-    searchQuery: string[];
-    onHistoryItemSelect?: (string: string) => void;
+export interface IButtonProps {
+    onClick: Function;
+    label: String;
+    isActive?: boolean;
 }
 
-const ButtonUiComponent: React.FunctionComponent<ISearchHistory> = ({searchQuery, onHistoryItemSelect})=>{
-    return <section>
-        {searchQuery.map((string, index) => (
-            <button key={index} onClick={() => onHistoryItemSelect && onHistoryItemSelect(string)}>
-                {string}
-            </button>
-        ))}
-    </section>
+const Button: React.FunctionComponent<IButtonProps> = ({onClick, label, isActive})=>{
+    return  (
+        <button 
+            className={classnames('ui-button', {'is-active': isActive})}
+            onClick={(e) => onClick(e)}
+        >
+            {label}
+        </button>
+    )
 }
 
-export default ButtonUiComponent;
+export default Button;
