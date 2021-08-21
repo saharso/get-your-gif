@@ -10,6 +10,7 @@ export default function FavoriteRouterComponent(){
 
     useEffect(() => {
         setData(arrayFromMap(state.favoritesMap));
+        console.log();
     }, [state]);
 
     return <article className="gyt-favoritesRoute layout-gridHeaderMain">
