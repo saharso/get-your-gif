@@ -1,4 +1,5 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, { useState, useContext, useEffect} from 'react';
+import ReactDOM from 'react-dom';
 import Input from '../../../ui/search/search';
 import {AppContext} from '../../../models/appContext';
 import useFetchGifs from '../../../hooks/useFetchGifs';
@@ -53,18 +54,21 @@ export default function SearchRouteComponent(){
 
     return <article className="layout-gridHeaderMain">
         <header>
-            <div className="space-paddingX space-row">
+            { ReactDOM.createPortal(
                 <Input 
-                    defaultValue={query}
-                    onQueryUpdate={(query)=> { setQuery(query); }}
-                    onLoad={(inputElement) => inputElement.focus()}
-                /> 
-            </div>
+                defaultValue={query}
+                onQueryUpdate={(query)=> { setQuery(query); }}
+                onLoad={(inputElement) => inputElement.focus()}
+            /> 
+
+                , document.getElementById('portal-element') as HTMLElement
+            ) }
             <SearchHistoryComponent 
                 searchHistory={searchHistory}
                 searchQuery={query}
                 onHistoryItemSelect={(selected)=>{setQuery(selected)}}    
             />
+
         </header>
         <main>
             {!query.trim() && !data.length && <h2>What are you waiting for? Start searching for some gifs!</h2>}

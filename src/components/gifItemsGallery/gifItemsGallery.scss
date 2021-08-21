@@ -5,7 +5,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr;
-    gap: $unit * 2;
+    gap: $unit-big;
 }
 .gig-gifItem__info {
     display: grid;

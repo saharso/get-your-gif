@@ -11,6 +11,3 @@ const WordBox: React.FunctionComponent = (props) => {
 }
 
 export default WordBox;
-
-
-  
