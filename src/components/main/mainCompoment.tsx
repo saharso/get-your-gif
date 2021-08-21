@@ -1,13 +1,13 @@
 import React, {Suspense} from "react";
 import IRoute from '../../ts/route.interface';
 import {Route, Switch} from "react-router-dom";
-import Loader from "../../ui/loader";
+import Loader from "../../ui/loader/loader";
 
 export type IHeaderProps = {
     routes: IRoute[];
 }
 const MainComponent: React.FunctionComponent<IHeaderProps> = ({routes}) => {
-    return <main className="app-main">
+    return <main className="gyg-main layout-overflowYAuto">
         <Switch>
             {
             routes && routes.map(route => {

@@ -1,6 +1,7 @@
-import React, {useState, useContext, useEffect, Suspense} from 'react';
+import './gifItemsGallery.scss';
+import React, {Suspense} from 'react';
 import GifItemSchema from '../../models/gifItemSchema';
-import Loader from '../../ui/loader';
+import Loader from '../../ui/loader/loader';
 
 const GifItemComponent = React.lazy(()=>import('../gifItem/gifItem'));
 export interface IFavoriteUpdates {
@@ -14,7 +15,7 @@ interface ISearchResults {
 
 
 const GifItemsGalleryComponent: React.FunctionComponent<ISearchResults> = ({results, onFavoriteItemsUpdated}) => {
-    return <article className="app-search-results">
+    return <article className="gyg-gifItemsGallery layout-gridHeaderMain">
         {results.length === 0 && <h2>No results found</h2>}
         {
             results.map(item => <Suspense key={item.id} fallback={<Loader/>}>

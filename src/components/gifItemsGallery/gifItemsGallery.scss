@@ -1,0 +1,13 @@
+@import '../../assets/scss/config.scss';
+
+.gyg-gifItemsGallery {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: $unit * 2;
+}
+.gig-gifItem__info {
+    display: grid;
+    grid-template-rows: 1fr auto;
+}

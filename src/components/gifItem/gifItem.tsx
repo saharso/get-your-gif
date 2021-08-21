@@ -1,5 +1,5 @@
-import {useState, useContext} from 'react';
-import { AppContext } from '../../models/appContext';
+import './gifItem.scss'
+import {useState} from 'react';
 import GifItemSchema from '../../models/gifItemSchema';
 
 export interface IGifItemParams {
@@ -19,15 +19,18 @@ const GifItemComponent: React.FunctionComponent<IGifItemParams> = ({details, onF
         onFavoritesUpdate && onFavoritesUpdate(!isFavorite, details);
     }
 
-    return <section style={{float: 'left'}} className="app-gifItem" id={details.id}>
-        <img src={details.imageUrl} alt={details.title}/>
-        <h3>
-            {details.title}
-             <b>{details.id}</b>
-        </h3>
-        <button onClick={()=>toggleFavorites()}>
-            {toggleFavoriteText(isFavorite)}
-        </button>
+    return <section className="gyg-gifItem" id={details.id}>
+        <figure className="gig-gifItem__image">
+            <img src={details.imageUrl} alt={details.title}/>
+        </figure>
+        <div className="gig-gifItem__info">
+            <h3>
+                {details.title}
+            </h3>
+            <button onClick={()=>toggleFavorites()}>
+                {toggleFavoriteText(isFavorite)}
+            </button>
+        </div>
     </section>;
 }
 

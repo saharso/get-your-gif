@@ -1,0 +1,27 @@
+.layout-flex {
+    display: flex;
+}
+.layout-alignY {
+    @extend .layout-flex;
+    align-items: center;
+}
+.layout-alignX {
+    @extend .layout-flex;
+    justify-content: center;
+}
+.layout-alignXY {
+    @extend .layout-alignX;
+    @extend .layout-alignY;
+}
+.layout-displayInline {
+    display: inline
+}
+.layout-gridHeaderMain {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;    
+}
+.layout-overflowYAuto {
+    overflow-y: auto;
+    overflow-x: hidden;
+}

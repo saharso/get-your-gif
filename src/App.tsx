@@ -13,8 +13,10 @@ function App() {
 
   return <AppContext.Provider value={{state, dispatch}}>
       <BrowserRouter basename="/">
-        <HeaderComponent title="Get your Gif" routes={routes}/>
-        <MainComponent routes={routes}/>
+        <div className="gyg-wrapper">
+          <HeaderComponent title="Get your Gif" routes={routes}/>
+          <MainComponent routes={routes}/>
+        </div>
       </BrowserRouter>
     </AppContext.Provider>
 };

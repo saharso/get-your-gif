@@ -1,0 +1,12 @@
+@import '../../assets//scss//config.scss';
+
+.space-genericBox {
+    padding: $unit;
+}
+.space-paddingX {
+    padding-right: $unit;
+    padding-left: $unit;
+}
+.space-row {
+    margin-bottom: $unit;
+}

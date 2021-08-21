@@ -1,10 +1,10 @@
 import React, {useState, useContext, useEffect} from 'react';
-import SearchUiComponent from '../../../ui/search';
+import Input from '../../../ui/search/search';
 import {AppContext} from '../../../models/appContext';
 import useFetchGifs from '../../../hooks/useFetchGifs';
 import useItemsNoByScreenSize from '../../../hooks/useItemsNoByScreenSize';
 import GifItemsGalleryComponent, {IFavoriteUpdates} from '../../gifItemsGallery/gifItemsGallery';
-import Loader from '../../../ui/loader';
+import Loader from '../../../ui/loader/loader';
 import ActionsEnum from '../../../models/actions.enum';
 import SearchHistoryComponent from '../../searchHistory/searchHistory';
 import IPojo from '../../../ts/pojo.interface';
@@ -51,16 +51,15 @@ export default function SearchRouteComponent(){
         setSearchHistory(state.searchHistory)
     }, [state.searchHistory]);
 
-    return <article>
+    return <article className="layout-gridHeaderMain">
         <header>
-            <div className="t-row">
-                <SearchUiComponent 
+            <div className="space-paddingX space-row">
+                <Input 
                     defaultValue={query}
                     onQueryUpdate={(query)=> { setQuery(query); }}
                     onLoad={(inputElement) => inputElement.focus()}
                 /> 
             </div>
-            
             <SearchHistoryComponent 
                 searchQuery={searchHistory}
                 onHistoryItemSelect={(selected)=>{setQuery(selected)}}    

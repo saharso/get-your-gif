@@ -1,8 +1,14 @@
 @import './assets/scss/font.scss';
+@import './assets/scss/normalizes.scss';
+@import './assets/scss/config.scss';
+@import './assets/scss/layout.scss';
+@import './assets/scss/space.scss';
 
 html {
-  --primary-color: blue;
-  --secondary-color: purple;
+  --primary-color: #ea2b9e;
+  --secondary-color: #161642;
+  --border-color: #ccc;
+  --focus-color: rgb(#3dcad8);
   --app-bg: #ffffff;
   --app-fontSize: 14px;
 }
@@ -15,6 +21,17 @@ body, html, #root {
 body {
   margin: 0;
   background-color: var(--app-bg);
-  font-size: var(--app-fontSize);
+  font-size: 14px;
   font-family: Lato;
+}
+@media (max-width: 1400px) {
+  body {
+    font-size: calc(1vw + 1px);
+  }
+}
+.gyg-wrapper {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
 }

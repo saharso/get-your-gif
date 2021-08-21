@@ -1,12 +1,13 @@
+import './search.scss';
 import React, {useState, useEffect, useRef} from 'react';
-import useDebounce from '../hooks/useDebounce';
+import useDebounce from '../../hooks/useDebounce';
 export interface ISearchUi {
     onQueryUpdate: (debouncedResult: string) => void;
     onLoad?: (input: HTMLInputElement) => void;
     defaultValue?: string;
 }
 
-const SearchUiComponent: React.FunctionComponent<ISearchUi> = ({onQueryUpdate, defaultValue, onLoad}) => {
+const Input: React.FunctionComponent<ISearchUi> = ({onQueryUpdate, defaultValue, onLoad}) => {
     const [value, setValue] = useState(defaultValue);
     const inputRef = useRef<HTMLInputElement>(null);
     const [preventInitial, setPreventInitial] = useState(false);
@@ -21,7 +22,7 @@ const SearchUiComponent: React.FunctionComponent<ISearchUi> = ({onQueryUpdate, d
 
     return <>
         {/* "key" is essential for default value to change on render */}
-        <input className="ui-search"
+        <input className="ui-Input"
             onChange={(e: any) => {const target = e.target as HTMLInputElement; setValue(target.value)}}
             defaultValue={defaultValue}
             key={defaultValue}
@@ -30,7 +31,7 @@ const SearchUiComponent: React.FunctionComponent<ISearchUi> = ({onQueryUpdate, d
     </>
 }
 
-export default SearchUiComponent;
+export default Input;
 
 
   
