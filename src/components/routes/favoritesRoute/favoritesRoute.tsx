@@ -7,19 +7,17 @@ import RoutesController from '../routesController';
 export default function FavoriteRouterComponent(){
     const { state, dispatch } = useContext(AppContext);
     const [data, setData] = useState([]);
-    const [favoriteUpdate, setFavoriteUpdate] = useState<IFavoriteUpdates>();
 
     useEffect(() => {
         setData(arrayFromMap(state.favoritesMap));
-        RoutesController(dispatch).favoriteDispatches(favoriteUpdate);
-    }, [state, favoriteUpdate]);
+    }, [state]);
 
     return <>
         <h2>Favorites</h2>
         <GifItemsGalleryComponent 
             results={data}
             onFavoriteItemsUpdated={(favoriteUpdate: IFavoriteUpdates)=>{
-                setFavoriteUpdate(favoriteUpdate);
+                RoutesController(dispatch).favoriteDispatches(favoriteUpdate);
             }}            
         />
     </>;
