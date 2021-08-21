@@ -1,10 +1,14 @@
 import {getFavoritesFromLocalStorage} from "../actions/favorites";
 import GifItemSchema from "./gifItemSchema";
 
-export class StateModel {
-    searchQuery: string = '';
-    readonly favoritesMap: Map<string, GifItemSchema> = new Map(getFavoritesFromLocalStorage());
-    readonly searchHistory: Array<string> = [];
+export interface IStateModel {
+    searchQuery: string;
+    readonly favoritesMap: Map<string, GifItemSchema>,
+    readonly searchHistory: Array<string>,
 }
-const store = new StateModel();
+const store: IStateModel = {
+    searchQuery: '',
+    favoritesMap: new Map(getFavoritesFromLocalStorage()),
+    searchHistory: [],
+}
 export default store;
