@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect} from 'react';
 import ReactDOM from 'react-dom';
-import Input from '../../../ui/search/search';
+import Input from '../../../ui/input/input';
 import {AppContext} from '../../../models/appContext';
 import useFetchGifs from '../../../hooks/useFetchGifs';
 import useItemsNoByScreenSize from '../../../hooks/useItemsNoByScreenSize';
@@ -56,10 +56,11 @@ export default function SearchRouteComponent(){
         <header>
             { ReactDOM.createPortal(
                 <Input 
-                defaultValue={query}
-                onQueryUpdate={(query)=> { setQuery(query); }}
-                onLoad={(inputElement) => inputElement.focus()}
-            /> 
+                    defaultValue={query}
+                    onQueryUpdate={(query)=> { setQuery(query); }}
+                    onLoad={(inputElement) => inputElement.focus()}
+                    placeholder="Search for gifs"
+                /> 
 
                 , document.getElementById('portal-element') as HTMLElement
             ) }

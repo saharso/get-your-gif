@@ -1,7 +1,7 @@
 import './gifItem.scss'
 import {useState} from 'react';
 import GifItemSchema from '../../models/gifItemSchema';
-
+import Button from '../../ui/button/button';
 export interface IGifItemParams {
     details: GifItemSchema;
     onFavoritesUpdate?: (isFavorite: boolean, itemId: GifItemSchema) => void;
@@ -13,7 +13,6 @@ function toggleFavoriteText(condition: boolean){
 
 const GifItemComponent: React.FunctionComponent<IGifItemParams> = ({details, onFavoritesUpdate}) => {
     const [isFavorite, setIsFavorite] = useState(details.isFavorite);
-
     function toggleFavorites() {
         setIsFavorite(!isFavorite);
         onFavoritesUpdate && onFavoritesUpdate(!isFavorite, details);
@@ -25,11 +24,13 @@ const GifItemComponent: React.FunctionComponent<IGifItemParams> = ({details, onF
         </figure>
         <div className="gig-gifItem__info">
             <h3>
-                {details.title}
+                {details.title} {isFavorite}
             </h3>
-            <button onClick={()=>toggleFavorites()}>
-                {toggleFavoriteText(isFavorite)}
-            </button>
+            <Button 
+                onClick={()=>toggleFavorites()} 
+                label={toggleFavoriteText(isFavorite)}
+                isActive={isFavorite}
+            />
         </div>
     </section>;
 }

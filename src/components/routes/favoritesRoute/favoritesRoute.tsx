@@ -6,7 +6,7 @@ import arrayFromMap from '../../../actions/arrayFromMap';
 export default function FavoriteRouterComponent(){
     const { state, dispatch } = useContext(AppContext);
     const [data, setData] = useState([]);
-
+    console.log(data);
     useEffect(() => {
         setData(arrayFromMap(state.favoritesMap));
     }, [state]);
