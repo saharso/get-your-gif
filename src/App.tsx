@@ -12,7 +12,7 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return <AppContext.Provider value={{state, dispatch}}>
-      <BrowserRouter basename="/">
+      <BrowserRouter basename="/get-your-gif/">
         <div className="gyg-wrapper">
           <HeaderComponent title="Get your Gif" routes={routes}/>
           <MainComponent routes={routes}/>

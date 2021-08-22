@@ -21,7 +21,7 @@ export default function SearchRouteComponent(){
     const { status, data } = useFetchGifs(query, numberOfItems);
 
     const displaysByApiState: IPojo<React.ReactChild> = {
-        'loading': <Loader/>,
+        'loading': <div style={{height: '100%', fontSize: '5em'}} className="layout-alignXY"><Loader/></div>,
         'success': <GifItemsGalleryComponent 
             results={data} 
             onFavoriteItemsUpdated={(favoriteUpdate: IFavoriteUpdates)=>{

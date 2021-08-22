@@ -2,7 +2,7 @@
 .ui-spinner {
   width: $unit-big;
   height: $unit-big;
-  border: $unit / 2 solid transparent;
+  border: $unit * 0.3 solid transparent;
   box-sizing: border-box;
   border-radius: 50%;
   animation-name: border;
