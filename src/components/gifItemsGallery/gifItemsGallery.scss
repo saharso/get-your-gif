@@ -10,4 +10,10 @@
         grid-template-columns: 1fr;  
         grid-template-rows: 100%;  
     }
+    .screenState-tablet & {
+        grid-template-columns: 1fr 1fr;
+    }
+    .screenState-mobile & {
+        grid-template-columns: 1fr;
+    }
 }

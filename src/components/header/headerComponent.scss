@@ -63,3 +63,34 @@
 
     }
 }
+
+body.screenState-tablet, body.screenState-mobile {
+    .app-header__top {
+        display: grid;
+        grid-template-areas: "a b"
+                            "c c";
+        grid-template-columns: auto 1fr;
+    }
+    .app-header__logo {
+        grid-area: a;
+    }
+    .app-header__text {
+        grid-area: b;
+        margin: 0;
+    }
+    #portal-element {
+        margin-top: $unit;
+        grid-area: c;
+    }
+}
+body.screenState-mobile {
+    .app-header__top {
+        font-size: 70%;
+    }
+    .app-header__menuItem {
+        padding-top: $unit;
+        &:after {
+            border-top-right-radius: $unit;
+        }
+    }
+}
